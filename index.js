@@ -17,12 +17,19 @@ async function run() {
   try {
     await client.connect();
     const productsCollection = client.db("proTechGear").collection("products");
-
+    //create product api
     app.get("/product", async (req, res) => {
       const query = {};
       const cursor = productsCollection.find(query);
       const products = await cursor.toArray();
       res.send(products);
+    });
+    //create blogs api
+    app.get("/blogs", async (req, res) => {
+      const query = {};
+      const cursor = blogsCollection.find(query);
+      const blogs = await cursor.toArray();
+      res.send(blogs);
     });
 
     app.get('/product/:id',async (req,res)=>{

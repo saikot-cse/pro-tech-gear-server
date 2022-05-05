@@ -47,29 +47,7 @@ async function run() {
       res.send(result);
     })
 
-    //update item
-    app.put("/product/:id", async (req, res) => {
-      const id = req.params.id;
-      const newItem = req.body;
-      const filter = { _id: ObjectId(id) };
-      const options = { upsert: true };
-      const updatedDoc = {
-        $set: {
-          name: newItem.name,
-          description: newItem.description,
-          price: newItem.price,
-          img: newItem.img,
-          supplierName: newItem.supplierName,
-          quantity: newItem.quantity,
-        },
-      };
-      const result = await productsCollection.updateOne(
-        filter,
-        updatedDoc,
-        options
-      );
-      res.send(result);
-    });
+    
 
   } finally {
   }
